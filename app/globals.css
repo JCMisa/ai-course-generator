@@ -86,7 +86,7 @@
 }
 
 .linear-bg {
-  background: -webkit-linear-gradient(16deg, #3795bd, #f96d00);
+  background: -webkit-linear-gradient(16deg, #f96d00, #4b7282);
 }
 
 .card-scroll::-webkit-scrollbar {
