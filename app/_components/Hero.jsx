@@ -1,6 +1,11 @@
+'use client'
+
+import { useUser } from '@clerk/nextjs';
 import React from 'react'
 
 const Hero = () => {
+    const { user } = useUser();
+
     return (
         <section className="text-white">
             <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
@@ -18,12 +23,24 @@ const Hero = () => {
                     </p>
 
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
-                        <a
-                            className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                            href="#"
-                        >
-                            Get Started
-                        </a>
+                        {
+                            user ? (
+                                <a
+                                    className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                                    href="/dashboard"
+                                >
+                                    Get Started
+                                </a>
+                            ) : (
+                                <a
+                                    className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+                                    href="/sign-in"
+                                >
+                                    Sign-in
+                                </a>
+                            )
+                        }
+
 
                         <a
                             className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"

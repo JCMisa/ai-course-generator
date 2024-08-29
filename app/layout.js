@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { dark } from "@clerk/themes";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, GoogleOneTap } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,6 +20,8 @@ export default function RootLayout({ children }) {
       }}
     >
       <html lang="en">
+        {/*add the new feature of clerk which is one tap auth */}
+        <GoogleOneTap />
         <head>
           <link rel="icon" type="image/svg+xml" href="/images/pensieve-logo.png" />
         </head>
