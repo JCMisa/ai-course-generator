@@ -1,5 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { dark } from "@clerk/themes";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,11 +13,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" type="image/svg+xml" href="/images/pensieve-logo.png" />
-      </head>
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+        variables: { colorPrimary: "#14919B", fontSize: "16px" },
+      }}
+    >
+      <html lang="en">
+        <head>
+          <link rel="icon" type="image/svg+xml" href="/images/pensieve-logo.png" />
+        </head>
+        <body className={inter.className}>
+          {children}
+          <Toaster />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

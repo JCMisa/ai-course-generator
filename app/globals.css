@@ -66,4 +66,37 @@
   body {
     @apply bg-background text-foreground;
   }
+  body::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  body::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: #f96d00;
+  }
+}
+
+.logo-text {
+  background: -webkit-linear-gradient(90deg, #3795bd, #f96d00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.linear-bg {
+  background: -webkit-linear-gradient(16deg, #3795bd, #f96d00);
+}
+
+.card-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.card-scroll::-webkit-scrollbar-track {
+  display: none;
+}
+
+.card-scroll::-webkit-scrollbar-thumb {
+  background: -webkit-linear-gradient(16deg, #3795bd, #f96d00);
 }
