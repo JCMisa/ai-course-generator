@@ -3,6 +3,9 @@
 import { Button } from '@/components/ui/button'
 import { LayoutGrid, Lightbulb, Settings } from 'lucide-react'
 import React, { useState } from 'react'
+import SelectCategory from './_components/SelectCategory'
+import TopicDescriptions from './_components/TopicDescriptions'
+import SelectOption from './_components/SelectOption'
 
 const CreateCourse = () => {
     const stepperOptions = [
@@ -52,6 +55,12 @@ const CreateCourse = () => {
 
             <div className='px-10 md:px-20 lg:px-44 mt-10'>
                 {/* components */}
+                {
+                    activeIndex === 0 ? <SelectCategory /> :
+                        activeIndex === 1 ? <TopicDescriptions /> :
+                            <SelectOption />
+                }
+
                 {/* next & prev btns */}
                 <div className='flex flex-col gap-3 sm:flex-row justify-between mt-10 items-center'>
                     <Button onClick={() => setactiveIndex(activeIndex - 1)} disabled={activeIndex === 0} className='min-w-52 border-primary hover:bg-primary hover:text-white' variant={'outline'}>
