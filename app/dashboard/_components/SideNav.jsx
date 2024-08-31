@@ -3,12 +3,15 @@
 import { UserButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { LayoutGrid, Settings, Telescope, WalletCards } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 
 const SideNav = ({ isShow }) => {
     const { user } = useUser();
+    const router = useRouter();
 
     const menuList = [
         {
@@ -78,8 +81,15 @@ const SideNav = ({ isShow }) => {
                             </div>
                         </div>
                     ) : (
-                        <div className="absolute bottom-5 left-0 w-full">
-                            {/* <UsageTrack /> */}
+                        <div className="absolute bottom-10 left-3 w-[80%]">
+                            <Progress value={33} />
+                            <h2 className='text-sm text-gray-500 my-2'>3 out of 5 course created</h2>
+                            <Button
+                                onClick={() => router.push("/dashboard/upgrade")}
+                                className="w-full my-3"
+                            >
+                                Upgrade Plan
+                            </Button>
                         </div>
                     )}
                 </div>

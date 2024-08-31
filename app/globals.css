@@ -85,6 +85,12 @@
   -webkit-text-fill-color: transparent;
 }
 
+.linear-text {
+  background: -webkit-linear-gradient(16deg, #3795bd, #f96d00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .linear-bg {
   background: -webkit-linear-gradient(16deg, #f96d00, #4b7282);
 }

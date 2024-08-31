@@ -19,7 +19,9 @@ const DashboardLayout = ({ children }) => {
             </div>
             <div className={`${show ? "md:ml-64" : ""} transition-all`}>
                 <DashboardHeader showSideNav={showSideNav} />
-                {children}
+                <div className='p-7'>
+                    {children}
+                </div>
             </div>
             <div className="fixed block md:hidden w-full bottom-0">
                 <ButtomNav />
