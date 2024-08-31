@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { FileClock, LayoutGrid, Settings, WalletCards } from "lucide-react";
+import { LayoutGrid, Settings, Telescope, WalletCards } from "lucide-react";
 
 const SideNav = ({ isShow }) => {
     const { user } = useUser();
@@ -19,15 +19,15 @@ const SideNav = ({ isShow }) => {
         },
         {
             id: 2,
-            name: "History",
-            icon: <FileClock />,
-            path: "/dashboard/history",
+            name: "Explore",
+            icon: <Telescope />,
+            path: "/dashboard/explore",
         },
         {
             id: 3,
-            name: "Billing",
+            name: "Upgrade",
             icon: <WalletCards />,
-            path: "/dashboard/billing",
+            path: "/dashboard/upgrade",
         },
         {
             id: 4,

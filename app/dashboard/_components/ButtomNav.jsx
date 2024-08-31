@@ -1,5 +1,5 @@
 import React from "react";
-import { FileClock, LayoutGrid, Settings, WalletCards } from "lucide-react";
+import { LayoutGrid, Settings, Telescope, WalletCards } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -13,19 +13,19 @@ const ButtomNav = () => {
         },
         {
             id: 2,
-            name: "History",
-            icon: <FileClock />,
-            path: "/dashboard/history",
+            name: "Explore",
+            icon: <Telescope />,
+            path: "/dashboard/explore",
         },
         {
             id: 3,
-            name: "Billing",
+            name: "Upgrade",
             icon: <WalletCards />,
-            path: "/dashboard/billing",
+            path: "/dashboard/upgrade",
         },
         {
             id: 4,
-            name: "Setting",
+            name: "Settings",
             icon: <Settings />,
             path: "/dashboard/setting",
         },

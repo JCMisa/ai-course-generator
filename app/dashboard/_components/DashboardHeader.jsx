@@ -17,12 +17,12 @@ const routes = [
         path: "/dashboard",
     },
     {
-        name: "history",
-        path: "/dashboard/history",
+        name: "Explore",
+        path: "/dashboard/explore",
     },
     {
-        name: "billing",
-        path: "/dashboard/billing",
+        name: "Upgrade",
+        path: "/dashboard/upgrade",
     },
     {
         name: "Settings",
