@@ -1,8 +1,18 @@
+import { UserInputContext } from '@/app/_context/UserInputContext';
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import React from 'react'
+import React, { useContext } from 'react'
 
 const TopicDescriptions = () => {
+    const { userCourseInput, setUserCourseInput } = useContext(UserInputContext);
+
+    const handleInputChange = (name, value) => {
+        setUserCourseInput(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
+
     return (
         <div className='mx-20 lg:mx-44'>
             {/* input topic */}
@@ -10,7 +20,7 @@ const TopicDescriptions = () => {
                 <label>
                     Write topic for the course you want to create
                 </label>
-                <Input placeholder={'e.g. Python'} />
+                <Input placeholder={'e.g. Python'} onChange={(e) => handleInputChange('topic', e.target.value)} defaultValue={userCourseInput?.topic} />
             </div>
 
             {/* textarea for desc */}
@@ -18,7 +28,7 @@ const TopicDescriptions = () => {
                 <label>
                     Tell us more about your course
                 </label>
-                <Textarea placeholder={'About your course'} />
+                <Textarea placeholder={'About your course'} onChange={(e) => handleInputChange('description', e.target.value)} defaultValue={userCourseInput?.description} />
             </div>
         </div>
     )

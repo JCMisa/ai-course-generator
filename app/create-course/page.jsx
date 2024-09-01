@@ -2,10 +2,11 @@
 
 import { Button } from '@/components/ui/button'
 import { LayoutGrid, Lightbulb, Settings } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import SelectCategory from './_components/SelectCategory'
 import TopicDescriptions from './_components/TopicDescriptions'
 import SelectOption from './_components/SelectOption'
+import { UserInputContext } from '../_context/UserInputContext'
 
 const CreateCourse = () => {
     const stepperOptions = [
@@ -27,6 +28,11 @@ const CreateCourse = () => {
     ]
 
     const [activeIndex, setactiveIndex] = useState(0);
+    const { userCourseInput, setUserCourseInput } = useContext(UserInputContext);
+
+    useEffect(() => {
+        console.log('user course context: ', userCourseInput);
+    }, [userCourseInput])
 
     return (
         <div>
