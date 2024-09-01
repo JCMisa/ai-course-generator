@@ -1,12 +1,14 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { LayoutGrid, Lightbulb, Settings } from 'lucide-react'
+import { LayoutGrid, Lightbulb, LoaderCircle, Settings } from 'lucide-react'
 import React, { useState, useContext, useEffect } from 'react'
 import SelectCategory from './_components/SelectCategory'
 import TopicDescriptions from './_components/TopicDescriptions'
 import SelectOption from './_components/SelectOption'
 import { UserInputContext } from '../_context/UserInputContext'
+import { chatSession } from '@/utils/AIModel'
+import { toast } from 'sonner'
 
 const CreateCourse = () => {
     const stepperOptions = [
@@ -27,6 +29,7 @@ const CreateCourse = () => {
         },
     ]
 
+    const [loading, setLoading] = useState(false);
     const [activeIndex, setactiveIndex] = useState(0);
     const { userCourseInput, setUserCourseInput } = useContext(UserInputContext);
 
@@ -49,6 +52,25 @@ const CreateCourse = () => {
             return true;
         }
         return false;
+    }
+
+    // method to generate ai response
+    const generateCourseLayout = async () => {
+        const PROMPT = `Generate a course tutorial on the following details, category with value of ${userCourseInput?.category}, topic with value of ${userCourseInput?.topic}, level with value of ${userCourseInput?.level}, duration with value of ${userCourseInput?.duration}, and chapters which is ${userCourseInput?.chapters}, based on those properties I want additional property called course which has an object value with properties called name which is the name of the course, description which is the description of the course, chapters which is an array of objects and each object has properties called chapterName which is the name of the chapter, about which is what the chapter is all about, and duration which is the duration of the chapter, make it in JSON format.`
+
+        setLoading(true);
+        try {
+            const result = await chatSession.sendMessage(PROMPT);
+            if (result) {
+                console.log(JSON.parse(result.response.text()));
+            }
+        } catch (error) {
+            toast(
+                <p className='text-sm font-bold text-red-500'>Internal error occured while generating AI response</p>
+            )
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -97,8 +119,8 @@ const CreateCourse = () => {
                     }
                     {
                         activeIndex === 2 &&
-                        <Button onClick={() => setactiveIndex(activeIndex + 1)} className='min-w-52' disabled={checkStatus()}>
-                            Generate Course Layout
+                        <Button onClick={() => generateCourseLayout()} className='min-w-52' disabled={checkStatus()}>
+                            {loading ? <LoaderCircle className='animate-spin' /> : 'Generate Course Layout'}
                         </Button>
                     }
                 </div>
