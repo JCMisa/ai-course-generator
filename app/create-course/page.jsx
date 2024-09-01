@@ -34,6 +34,23 @@ const CreateCourse = () => {
         console.log('user course context: ', userCourseInput);
     }, [userCourseInput])
 
+    // check if context array is empty, then disable te next button
+    const checkStatus = () => {
+        if (userCourseInput?.length == 0) {
+            return true;
+        }
+        if (activeIndex == 0 && (userCourseInput?.category?.length == 0 || userCourseInput?.category == undefined)) {
+            return true;
+        }
+        if (activeIndex == 1 && (userCourseInput?.topic?.length == 0 || userCourseInput?.topic == undefined)) {
+            return true;
+        }
+        if (activeIndex == 2 && (userCourseInput?.level == undefined || userCourseInput?.duration == undefined || userCourseInput?.displayVideo == undefined || userCourseInput?.chapters == undefined)) {
+            return true;
+        }
+        return false;
+    }
+
     return (
         <div>
             {/* stepper */}
@@ -74,13 +91,13 @@ const CreateCourse = () => {
                     </Button>
                     {
                         activeIndex < 2 &&
-                        <Button onClick={() => setactiveIndex(activeIndex + 1)} className='min-w-52'>
+                        <Button onClick={() => setactiveIndex(activeIndex + 1)} className='min-w-52' disabled={checkStatus()}>
                             Next
                         </Button>
                     }
                     {
                         activeIndex === 2 &&
-                        <Button onClick={() => setactiveIndex(activeIndex + 1)} className='min-w-52'>
+                        <Button onClick={() => setactiveIndex(activeIndex + 1)} className='min-w-52' disabled={checkStatus()}>
                             Generate Course Layout
                         </Button>
                     }
