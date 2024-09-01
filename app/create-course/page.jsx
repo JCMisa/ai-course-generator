@@ -9,6 +9,7 @@ import SelectOption from './_components/SelectOption'
 import { UserInputContext } from '../_context/UserInputContext'
 import { chatSession } from '@/utils/AIModel'
 import { toast } from 'sonner'
+import LoadingDialog from './_components/LoadingDialog'
 
 const CreateCourse = () => {
     const stepperOptions = [
@@ -125,6 +126,7 @@ const CreateCourse = () => {
                     }
                 </div>
             </div>
+            <LoadingDialog loading={loading} />
         </div >
     )
 }
