@@ -9,9 +9,12 @@ import { toast } from 'sonner'
 import BasicInfo from './_components/BasicInfo'
 import CourseDetails from './_components/CourseDetails'
 import ChapterList from './_components/ChapterList'
+import { ArrowLeftCircle } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 const CourseLayout = ({ params }) => {
     const { user } = useUser();
+    const router = useRouter();
 
     const [loading, setLoading] = useState(false);
     const [course, setCourse] = useState({})
@@ -44,10 +47,13 @@ const CourseLayout = ({ params }) => {
 
     return (
         <div className='mt-10 px-7 md:px-20 lg:px-44'>
-            <h2 className='font-bold text-center text-2xl'>Course Layout</h2>
+            <div className='flex flex-row items-center gap-2 justify-center'>
+                <ArrowLeftCircle className='cursor-pointer' onClick={() => router.back()} />
+                <h2 className='font-bold text-center text-2xl'>Course Layout</h2>
+            </div>
 
             {/* basic info */}
-            <BasicInfo courseInfo={course} />
+            <BasicInfo courseInfo={course} refreshData={() => getCourseByCourseId()} />
             {/* course details */}
             <CourseDetails courseInfo={course} />
             {/* list of lessons */}

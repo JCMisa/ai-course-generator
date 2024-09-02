@@ -21,15 +21,15 @@ import { CourseList } from '@/utils/schema'
 import { eq } from 'drizzle-orm'
 
 
-const EditCourseInfo = ({ courseInfo }) => {
+const EditCourseInfo = ({ courseInfo, refreshData }) => {
     const [loading, setLoading] = useState(false)
     const [name, setName] = useState()
     const [description, setDescription] = useState()
 
-    useEffect(() => {
-        setName(courseInfo.courseOutput.course.name);
-        setDescription(courseInfo.courseOutput.course.description);
-    }, [courseInfo])
+    // useEffect(() => {
+    //     courseInfo && setName(courseInfo.courseOutput.course.name);
+    //     courseInfo && setDescription(courseInfo.courseOutput.course.description);
+    // }, [courseInfo])
 
     const onUpdateHandler = async () => {
         setLoading(true);
@@ -44,6 +44,7 @@ const EditCourseInfo = ({ courseInfo }) => {
                 toast(
                     <p className='text-sm font-bold text-green-500'>Course info updated successfully</p>
                 )
+                refreshData()
             }
         } catch (error) {
             toast(
@@ -65,11 +66,11 @@ const EditCourseInfo = ({ courseInfo }) => {
                     <DialogDescription>
                         <div className='mt-3'>
                             <label>Course Title</label>
-                            <Input defaultValue={courseInfo?.courseOutput?.course?.name} onChange={(e) => setName(e.target.value)} />
+                            <Input defaultValue={courseInfo?.courseOutput?.course?.name} onChange={(e) => setName(e.target.value ? e.target?.value : courseInfo?.courseOutput?.course?.name)} />
                         </div>
                         <div>
                             <label>Description</label>
-                            <Textarea defaultValue={courseInfo?.courseOutput?.course?.description} onChange={(e) => setDescription(e.target.value)} className='card-scroll h-32' />
+                            <Textarea defaultValue={courseInfo?.courseOutput?.course?.description} onChange={(e) => setDescription(e.target.value ? e.target.value : courseInfo?.courseOutput?.course?.description)} className='card-scroll h-32' />
                         </div>
                     </DialogDescription>
                 </DialogHeader>
