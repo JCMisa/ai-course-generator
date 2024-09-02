@@ -26,7 +26,7 @@ const TopicDescriptions = () => {
             {/* textarea for desc */}
             <div className='mt-5'>
                 <label>
-                    Tell us more about your course
+                    Tell us more about your course (optional)
                 </label>
                 <Textarea placeholder={'About your course'} onChange={(e) => handleInputChange('description', e.target.value)} defaultValue={userCourseInput?.description} />
             </div>

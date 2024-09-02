@@ -52,7 +52,7 @@ const SelectOption = () => {
                         <SelectContent>
                             <SelectItem value="1 Hour" className='cursor-pointer'>1 Hour</SelectItem>
                             <SelectItem value="2 Hours" className='cursor-pointer'>2 Hours</SelectItem>
-                            <SelectItem value="Advance" className='cursor-pointer'>More than 2 Hours</SelectItem>
+                            <SelectItem value="2+ Hours" className='cursor-pointer'>More than 2 Hours</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
