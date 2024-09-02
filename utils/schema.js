@@ -15,4 +15,5 @@ export const CourseList = pgTable("courseList", {
     createdBy: varchar("createdBy"),
     username: varchar("username"),
     userProfileImage: varchar("userProfileImage"),
+    includeVideo: varchar('includeVideo').default('yes')
 });

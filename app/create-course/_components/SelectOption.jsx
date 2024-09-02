@@ -66,8 +66,8 @@ const SelectOption = () => {
                             <SelectValue placeholder="Select" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="Yes" className='cursor-pointer'>Yes</SelectItem>
-                            <SelectItem value="No" className='cursor-pointer'>No</SelectItem>
+                            <SelectItem value="yes" className='cursor-pointer'>Yes</SelectItem>
+                            <SelectItem value="no" className='cursor-pointer'>No</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>

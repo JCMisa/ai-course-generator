@@ -10,8 +10,16 @@ import { UserInputContext } from '../_context/UserInputContext'
 import { chatSession } from '@/utils/AIModel'
 import { toast } from 'sonner'
 import LoadingDialog from './_components/LoadingDialog'
+import { db } from '@/utils/db'
+import { CourseList } from '@/utils/schema'
+import uuid4 from 'uuid4'
+import { useUser } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
 
 const CreateCourse = () => {
+    const { user } = useUser();
+    const router = useRouter();
+
     const stepperOptions = [
         {
             id: 1,
@@ -64,10 +72,42 @@ const CreateCourse = () => {
             const result = await chatSession.sendMessage(PROMPT);
             if (result) {
                 console.log(JSON.parse(result.response.text()));
+                saveCourseLayout(JSON.parse(result.response.text()));
             }
         } catch (error) {
             toast(
                 <p className='text-sm font-bold text-red-500'>Internal error occured while generating AI response</p>
+            )
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const saveCourseLayout = async (courseOutput) => {
+        const courseId = uuid4();
+        setLoading(true);
+        try {
+            const result = await db.insert(CourseList).values({
+                courseId: courseId,
+                name: userCourseInput?.topic,
+                level: userCourseInput?.level,
+                category: userCourseInput?.category,
+                courseOutput: courseOutput,
+                createdBy: user?.primaryEmailAddress?.emailAddress,
+                username: user?.fullName,
+                userProfileImage: user?.imageUrl,
+                includeVideo: userCourseInput?.displayVideo
+            })
+
+            if (result) {
+                toast(
+                    <p className='text-sm font-bold text-green-500'>Course layout saved successfully</p>
+                )
+                router.replace(`/create-course/${courseId}`);
+            }
+        } catch (error) {
+            toast(
+                <p className='text-sm font-bold text-red-500'>Internal error occured while saving to database</p>
             )
         } finally {
             setLoading(false);
