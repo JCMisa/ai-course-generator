@@ -46,7 +46,7 @@ const CourseLayout = ({ params }) => {
     }
 
     return (
-        <div className='mt-10 px-7 md:px-20 lg:px-44'>
+        <div className='mt-10 px-7 md:px-20 lg:px-44 mb-20'>
             <div className='flex flex-row items-center gap-2 justify-center'>
                 <ArrowLeftCircle className='cursor-pointer' onClick={() => router.back()} />
                 <h2 className='font-bold text-center text-2xl'>Course Layout</h2>
