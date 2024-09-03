@@ -26,10 +26,10 @@ const EditCourseInfo = ({ courseInfo, refreshData }) => {
     const [name, setName] = useState()
     const [description, setDescription] = useState()
 
-    // useEffect(() => {
-    //     courseInfo && setName(courseInfo.courseOutput.course.name);
-    //     courseInfo && setDescription(courseInfo.courseOutput.course.description);
-    // }, [courseInfo])
+    useEffect(() => {
+        courseInfo && setName(courseInfo?.courseOutput?.course?.name);
+        courseInfo && setDescription(courseInfo?.courseOutput?.course?.description);
+    }, [courseInfo])
 
     const onUpdateHandler = async () => {
         setLoading(true);
@@ -68,9 +68,9 @@ const EditCourseInfo = ({ courseInfo, refreshData }) => {
                             <label>Course Title</label>
                             <Input defaultValue={courseInfo?.courseOutput?.course?.name} onChange={(e) => setName(e.target.value ? e.target?.value : courseInfo?.courseOutput?.course?.name)} />
                         </div>
-                        <div>
+                        <div className='mt-2'>
                             <label>Description</label>
-                            <Textarea defaultValue={courseInfo?.courseOutput?.course?.description} onChange={(e) => setDescription(e.target.value ? e.target.value : courseInfo?.courseOutput?.course?.description)} className='card-scroll h-32' />
+                            <Textarea defaultValue={courseInfo?.courseOutput?.course?.description} onChange={(e) => setDescription(e.target.value ? e.target?.value : courseInfo?.courseOutput?.course?.description)} className='card-scroll h-32' />
                         </div>
                     </DialogDescription>
                 </DialogHeader>
