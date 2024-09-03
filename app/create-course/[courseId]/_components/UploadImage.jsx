@@ -1,15 +1,47 @@
 'use client'
 
+import { db } from '@/utils/db';
+import { storage } from '@/utils/firebaseConfig';
+import { CourseList } from '@/utils/schema';
+import { eq } from 'drizzle-orm';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import Image from 'next/image';
 import React, { useState } from 'react'
+import { toast } from 'sonner';
 
-const UploadImage = () => {
+const UploadImage = ({ courseInfo }) => {
     const [selectedFile, setSelectedFile] = useState();
 
-    const onFileSelected = (e) => {
-        const file = e.target.files[0];
-        setSelectedFile(URL.createObjectURL(file))
-        console.log('blob file: ', URL.createObjectURL(file))
+    // select image from files and upload to to firebase storage
+    const onFileSelected = async (e) => {
+        const file = e.target.files[0]; // get the selected image file
+        setSelectedFile(URL.createObjectURL(file)) // create a blob of the image file
+
+        const fileName = Date.now() + '.jpg'; // generate the name of the file
+        const storageRef = ref(storage, 'ai-course-generator/' + fileName); // pass the filename to the specific path in the storage
+        await uploadBytes(storageRef, file).then((snapshot) => {
+            console.log('upload file complete') // this will store the image bytes to the firebase storage specified location
+        }).then((resp) => {
+            getDownloadURL(storageRef).then(async (downloadUrl) => {
+                console.log('img url: ', downloadUrl); // this will get the viewable url of the img
+                try {
+                    // update the record's courseBanner column
+                    const result = await db.update(CourseList).set({
+                        courseBanner: downloadUrl
+                    }).where(eq(CourseList?.id, courseInfo?.id))
+
+                    if (result) {
+                        toast(
+                            <p className='text-sm font-bold text-green-500'>Course banner updated successfully</p>
+                        )
+                    }
+                } catch (error) {
+                    toast(
+                        <p className='text-sm font-bold text-red-500'>Internal error occured while updating the course banner</p>
+                    )
+                }
+            })
+        })
     }
 
     return (

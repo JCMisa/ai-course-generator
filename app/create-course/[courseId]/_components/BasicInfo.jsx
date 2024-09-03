@@ -17,7 +17,7 @@ const BasicInfo = ({ courseInfo, refreshData }) => {
                     <Button className='w-full mt-5'>Start</Button>
                 </div>
                 <div className='flex items-center justify-center min-w-[200px] max-w-[400px] rounded-xl min-h-[200px] max-h-[200px]'>
-                    <UploadImage />
+                    <UploadImage courseInfo={courseInfo} />
                     {/* <Image src={'/images/mockup-banner.jpg'} width={300} height={300} alt={'banner'} className='min-w-[200px] max-w-[400px] rounded-xl min-h-[200px] max-h-[200px] object-cover' /> */}
                 </div>
             </div>

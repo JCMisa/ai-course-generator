@@ -1,4 +1,5 @@
 import {
+    boolean,
     json,
     pgTable,
     serial,
@@ -15,5 +16,7 @@ export const CourseList = pgTable("courseList", {
     createdBy: varchar("createdBy"),
     username: varchar("username"),
     userProfileImage: varchar("userProfileImage"),
-    includeVideo: varchar('includeVideo').default('yes')
+    includeVideo: varchar('includeVideo').default('yes'),
+    courseBanner: varchar('courseBanner'),
+    published: boolean('published').default(false)
 });
