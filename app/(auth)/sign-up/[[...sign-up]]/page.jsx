@@ -8,7 +8,7 @@ const SignUpPage = () => {
                 <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
                     <img
                         alt="bg"
-                        src="/images/auth-bg.avif"
+                        src="/images/auth-bg.jpg"
                         className="absolute inset-0 h-full w-full object-cover"
                     />
                 </aside>

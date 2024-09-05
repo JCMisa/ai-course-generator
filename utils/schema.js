@@ -1,5 +1,6 @@
 import {
     boolean,
+    integer,
     json,
     pgTable,
     serial,
@@ -20,3 +21,11 @@ export const CourseList = pgTable("courseList", {
     courseBanner: varchar('courseBanner'),
     published: boolean('published').default(false)
 });
+
+export const Chapters = pgTable('chapters', {
+    id: serial("id").primaryKey(),
+    courseId: varchar("courseId").notNull(),
+    chapterId: integer("chapterId").notNull(),
+    content: json("content"),
+    videoId: varchar("videoId").notNull(),
+})
