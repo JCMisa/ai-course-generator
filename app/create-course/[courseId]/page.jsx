@@ -66,21 +66,24 @@ const CourseLayout = ({ params }) => {
                 // generate chapter ai content
                 const result = await generateAiChapterContent.sendMessage(PROMPT);
                 console.log('chapter content: ', result?.response?.text());
-                const content = JSON.parse(result?.response?.text());
 
-                // save chapter content + video url
-                await db.insert(Chapters).values({
-                    chapterId: index,
-                    courseId: course?.courseId,
-                    content: content,
-                    videoId: videoId
-                })
+                if (result && videoId != '') {
+                    const content = JSON.parse(result?.response?.text());
 
-                await db.update(CourseList).set({
-                    published: true
-                })
+                    // save chapter content + video url
+                    await db.insert(Chapters).values({
+                        chapterId: index,
+                        courseId: course?.courseId,
+                        content: content,
+                        videoId: videoId
+                    })
 
-                router.replace(`/create-course/${course?.courseId}/finish`);
+                    await db.update(CourseList).set({
+                        published: true
+                    })
+
+                    router.replace(`/create-course/${course?.courseId}/finish`);
+                }
             } catch (error) {
                 toast(
                     <p className='text-sm text-red-500 font-bold'>Internal error occured while creating AI Course Content</p>

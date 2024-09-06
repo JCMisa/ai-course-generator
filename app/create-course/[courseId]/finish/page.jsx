@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react'
 import BasicInfo from '../_components/BasicInfo';
 import { toast } from 'sonner';
-import { Clipboard, ClipboardCheck } from 'lucide-react';
+import { ArrowLeftCircle, Clipboard, ClipboardCheck } from 'lucide-react';
 
 const FinishScreen = ({ params }) => {
     const { user } = useUser();
@@ -46,7 +46,10 @@ const FinishScreen = ({ params }) => {
     }
     return (
         <div className='px-10 md:px-20 lg:px-44 my-7'>
-            <h2 className='text-center font-bold text-2xl my-3 logo-text'>Congratulations! Your Course is Ready 🎉</h2>
+            <div className='flex flex-row items-center justify-center gap-2'>
+                <ArrowLeftCircle className='w-5 h-5 cursor-pointer' onClick={() => router.replace('/dashboard')} />
+                <h2 className='text-center font-bold text-2xl my-3 text-primary'>Congratulations! Your Course is Ready 🎉</h2>
+            </div>
             <BasicInfo courseInfo={course} refreshData={() => getCourseByCourseId()} />
             <div className='mt-3 flex flex-row gap-2 items-center'>
                 <h2>Course URL</h2>
