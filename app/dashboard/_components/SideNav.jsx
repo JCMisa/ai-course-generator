@@ -4,14 +4,17 @@ import { UserButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
 import { LayoutGrid, Settings, Telescope, WalletCards } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import { UserCourseListContext } from "@/app/_context/UserCourseListContext";
 
 const SideNav = ({ isShow }) => {
     const { user } = useUser();
     const router = useRouter();
+
+    const { userCourseList, setUserCourseList } = useContext(UserCourseListContext)
 
     const menuList = [
         {
@@ -82,8 +85,8 @@ const SideNav = ({ isShow }) => {
                         </div>
                     ) : (
                         <div className="absolute bottom-10 left-3 w-[80%]">
-                            <Progress value={33} />
-                            <h2 className='text-sm text-gray-500 my-2'>3 out of 5 course created</h2>
+                            <Progress value={(userCourseList?.length / 5) * 100} />
+                            <h2 className='text-sm text-gray-500 my-2'>{userCourseList?.length} out of 5 course created</h2>
                             <Button
                                 onClick={() => router.push("/dashboard/upgrade")}
                                 className="w-full my-3"

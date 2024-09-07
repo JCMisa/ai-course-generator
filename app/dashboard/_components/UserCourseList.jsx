@@ -4,14 +4,17 @@ import { db } from '@/utils/db';
 import { CourseList } from '@/utils/schema';
 import { useUser } from '@clerk/nextjs';
 import { eq } from 'drizzle-orm';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { toast } from 'sonner';
 import CourseCard from './CourseCard';
 import { useRouter } from 'next/navigation';
+import { UserCourseListContext } from '@/app/_context/UserCourseListContext';
 
 const UserCourseList = () => {
     const { user } = useUser();
     const router = useRouter();
+
+    const { userCourseList, setUserCourseList } = useContext(UserCourseListContext)
 
     const [loading, setLoading] = useState(false)
     const [courseList, setCourseList] = useState([])
@@ -25,6 +28,7 @@ const UserCourseList = () => {
 
             if (result) {
                 setCourseList(result);
+                setUserCourseList(result);
             }
         } catch (error) {
             toast(
