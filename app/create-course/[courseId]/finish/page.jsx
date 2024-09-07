@@ -47,7 +47,7 @@ const FinishScreen = ({ params }) => {
     return (
         <div className='px-10 md:px-20 lg:px-44 my-7'>
             <div className='flex flex-row items-center justify-center gap-2'>
-                <ArrowLeftCircle className='w-5 h-5 cursor-pointer' onClick={() => router.replace('/dashboard')} />
+                <ArrowLeftCircle className='w-5 h-5 cursor-pointer' onClick={() => router.push('/dashboard')} />
                 <h2 className='text-center font-bold text-2xl my-3 text-primary'>Congratulations! Your Course is Ready 🎉</h2>
             </div>
             <BasicInfo courseInfo={course} refreshData={() => getCourseByCourseId()} />
