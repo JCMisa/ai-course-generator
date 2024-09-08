@@ -58,7 +58,7 @@ const CourseLayout = ({ params }) => {
             try {
                 // generate video url
                 let videoId = '';
-                service.getVideos(course?.name + ':' + chapter?.name).then(resp => {
+                service.getVideos(course?.name + ':' + chapter?.chapterName).then(resp => {
                     console.log(resp)
                     videoId = resp[0]?.id?.videoId
                 })

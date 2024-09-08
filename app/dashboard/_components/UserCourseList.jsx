@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import CourseCard from './CourseCard';
 import { useRouter } from 'next/navigation';
 import { UserCourseListContext } from '@/app/_context/UserCourseListContext';
+import CourseListSkeleton from './CourseListSkeleton';
 
 const UserCourseList = () => {
     const { user } = useUser();
@@ -48,13 +49,22 @@ const UserCourseList = () => {
         <div className=''>
             <h2 className='font-medium text-xl mt-10'>My AI Courses</h2>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-4'>
-                {
-                    courseList?.map((course, index) => (
-                        <CourseCard course={course} key={index} refreshData={() => getUserCourses()} />
-                    ))
-                }
-            </div>
+            {
+                courseList.length > 0 ? (
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-4'>
+                        {
+                            courseList?.map((course, index) => (
+                                <CourseCard course={course} key={index} refreshData={() => getUserCourses()} />
+                            ))
+                        }
+                    </div>
+                ) : (
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-4'>
+                        <CourseListSkeleton />
+                        <CourseListSkeleton />
+                    </div>
+                )
+            }
         </div>
     )
 }

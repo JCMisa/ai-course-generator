@@ -9,7 +9,7 @@ import Image from 'next/image';
 import React, { useState, useEffect } from 'react'
 import { toast } from 'sonner';
 
-const UploadImage = ({ courseInfo }) => {
+const UploadImage = ({ courseInfo, edit }) => {
     const [selectedFile, setSelectedFile] = useState();
 
     useEffect(() => {
@@ -57,7 +57,7 @@ const UploadImage = ({ courseInfo }) => {
                 <label htmlFor="upload-image">
                     <Image src={selectedFile ? selectedFile : '/images/placeholder-img.png'} width={300} height={300} alt={'banner'} className='min-w-[200px] max-w-[400px] rounded-xl min-h-[200px] max-h-[200px] object-cover cursor-pointer' />
                 </label>
-                <input className="w-10 opacity-0" name="file" type="file" id='upload-image' onChange={onFileSelected} />
+                {edit && <input className="w-10 opacity-0" name="file" type="file" id='upload-image' onChange={onFileSelected} />}
             </div>
             {/* {
                 selectedFile ? (

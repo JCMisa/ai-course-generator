@@ -2,7 +2,7 @@ import { CircleCheckBig, Clock } from 'lucide-react'
 import React from 'react'
 import EditCourseChapters from './EditCourseChapters'
 
-const ChapterList = ({ courseInfo, refreshData }) => {
+const ChapterList = ({ courseInfo, refreshData, edit = true }) => {
     return (
         <div className='mt-3'>
             <h2 className='font-bold text-xl'>Chapters</h2>
@@ -15,7 +15,10 @@ const ChapterList = ({ courseInfo, refreshData }) => {
                                     {index + 1}
                                 </h2>
                                 <div>
-                                    <h2 className='font-medium text-lg'>{chapter?.chapterName} <EditCourseChapters courseInfo={courseInfo} courseId={index} refreshData={refreshData} /></h2>
+                                    <h2 className='font-medium text-lg'>
+                                        {chapter?.chapterName}
+                                        {edit && <EditCourseChapters courseInfo={courseInfo} courseId={index} refreshData={refreshData} />}
+                                    </h2>
                                     <p className='text-sm text-gray-500'>{chapter?.about}</p>
                                     <p className='flex flex-row items-center gap-2 text-primary text-xs'><Clock className='w-3 h-3' /> {chapter?.duration}</p>
                                 </div>
