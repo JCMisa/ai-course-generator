@@ -9,6 +9,7 @@ import { LayoutGrid, Settings, Telescope, WalletCards } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { UserCourseListContext } from "@/app/_context/UserCourseListContext";
+import UsageTrack from "./UsageTrack";
 
 const SideNav = ({ isShow }) => {
     const { user } = useUser();
@@ -72,7 +73,7 @@ const SideNav = ({ isShow }) => {
                             </Link>
                         ))}
                     </div>
-                    {user?.primaryEmailAddress?.emailAddress ==
+                    {/* {user?.primaryEmailAddress?.emailAddress ==
                         "johncarlomisa399@gmail.com" ? (
                         <div className="fixed bottom-5 p-2 flex gap-2 items-center text-light">
                             <UserButton />
@@ -85,16 +86,12 @@ const SideNav = ({ isShow }) => {
                         </div>
                     ) : (
                         <div className="absolute bottom-10 left-3 w-[80%]">
-                            <Progress value={(userCourseList?.length / 5) * 100} />
-                            <h2 className='text-sm text-gray-500 my-2'>{userCourseList?.length} out of 5 course created</h2>
-                            <Button
-                                onClick={() => router.push("/dashboard/upgrade")}
-                                className="w-full my-3"
-                            >
-                                Upgrade Plan
-                            </Button>
+                            <UsageTrack />
                         </div>
-                    )}
+                    )} */}
+                    <div className="absolute bottom-10 left-3 w-[80%]">
+                        <UsageTrack />
+                    </div>
                 </div>
             )}
         </div>

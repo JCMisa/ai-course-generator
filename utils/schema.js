@@ -29,3 +29,12 @@ export const Chapters = pgTable('chapters', {
     content: json("content"),
     videoId: varchar("videoId").notNull(),
 })
+
+export const UserSubscription = pgTable("userSubscription", {
+    id: serial("id").primaryKey(),
+    email: varchar("email"),
+    username: varchar("username"),
+    active: boolean("active"),
+    paymentId: varchar("paymentId"),
+    joinDate: varchar("joinDate"),
+});

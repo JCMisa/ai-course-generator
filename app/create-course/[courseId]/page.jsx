@@ -12,7 +12,7 @@ import ChapterList from './_components/ChapterList'
 import { ArrowLeftCircle, LoaderCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { generateAiChapterContent } from '@/utils/AIModel'
+import { chatSession, generateAiChapterContent } from '@/utils/AIModel'
 import LoadingDialog from '../_components/LoadingDialog'
 import service from '@/utils/service'
 
@@ -59,12 +59,12 @@ const CourseLayout = ({ params }) => {
                 // generate video url
                 let videoId = '';
                 service.getVideos(course?.name + ':' + chapter?.chapterName).then(resp => {
-                    console.log(resp)
+                    console.log('yt id: ', resp[0]?.id?.videoId);
                     videoId = resp[0]?.id?.videoId
                 })
 
                 // generate chapter ai content
-                const result = await generateAiChapterContent.sendMessage(PROMPT);
+                const result = await chatSession.sendMessage(PROMPT);
                 console.log('chapter content: ', result?.response?.text());
 
                 if (result && videoId != '') {
@@ -88,6 +88,7 @@ const CourseLayout = ({ params }) => {
                 toast(
                     <p className='text-sm text-red-500 font-bold'>Internal error occured while creating AI Course Content</p>
                 )
+                console.log('ai content error: ', error);
             } finally {
                 setLoading(false);
             }

@@ -32,7 +32,6 @@ const Course = ({ params }) => {
                 .from(CourseList)
                 .where(
                     and(
-                        eq(CourseList?.createdBy, user?.primaryEmailAddress?.emailAddress),
                         eq(CourseList?.courseId, params?.courseId)
                     )
                 )

@@ -42,11 +42,11 @@ const CourseCard = ({ course, refreshData, displayUser = false }) => {
     }
 
     return (
-        <div className='shadow-lg bg-dark-100 p-2 rounded-lg'>
+        <div className='shadow-lg bg-dark-100 p-2 rounded-lg min-h-[29rem] max-h-[29rem]'>
             <Image src={course?.courseBanner} width={300} height={300} onClick={() => router.push(`/course/${course?.courseId}`)} className='w-full h-[200px] object-cover rounded-lg cursor-pointer' />
             <div className='p-2 flex flex-col gap-2'>
                 <h2 className='font-medium text-lg flex justify-between items-center'>
-                    {course?.courseOutput?.course?.name}
+                    {course?.courseOutput?.course?.name.slice(0, 30)}...
                     {!displayUser && <DropdownOption children={<EllipsisVertical />} deleteCourse={() => deleteCourse(course?.id)} />}
                 </h2>
                 <p className='text-sm text-gray-500'>{course?.category}</p>

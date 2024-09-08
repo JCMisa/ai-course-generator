@@ -53,7 +53,7 @@ const FinishScreen = ({ params }) => {
             <BasicInfo courseInfo={course} refreshData={() => getCourseByCourseId()} />
             <div className='mt-3 flex flex-row gap-2 items-center'>
                 <h2>Course URL</h2>
-                <h2 className='text-center text-gray-500 border p-2 rounded-lg flex gap-2 items-center cursor-pointer' onClick={async () => { await navigator.clipboard.writeText(process.env.NEXT_PUBLIC_HOST_NAME + '/course/view/' + course?.courseId); setCopied(true) }}>
+                <h2 className='text-center text-gray-500 border p-2 rounded-lg flex gap-2 items-center cursor-pointer' onClick={async () => { await navigator.clipboard.writeText(process.env.NEXT_PUBLIC_HOST_NAME + '/course/' + course?.courseId + '/start'); setCopied(true) }}>
                     {process.env.NEXT_PUBLIC_HOST_NAME}/course/view/{course?.courseId}
                     {copied ? <ClipboardCheck className='w-5 h-5 cursor-pointer text-green-500' /> : <Clipboard className='w-5 h-5 cursor-pointer' />}
                 </h2>

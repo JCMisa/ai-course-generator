@@ -62,7 +62,7 @@ const CourseStart = ({ params }) => {
         <div>
             {/* chapter list sidebar */}
             {/* show */}
-            <div className={`${showSideNav ? 'fixed' : 'hidden'} w-full md:w-64 h-screen bg-dark-100 transition-all`}>
+            <div className={`${showSideNav ? 'fixed' : 'hidden'} w-full md:w-64 h-screen bg-dark-100 transition-all overflow-y-auto card-scroll`}>
                 <div className='bg-dark-500 p-4 flex items-center justify-between gap-5'>
                     <h2 className='font-medium text-md'>{course?.courseOutput?.course?.name}</h2>
                     <AlignJustify className='cursor-pointer w-10 h-10' onClick={() => setShowSideNav(prev => !prev)} />

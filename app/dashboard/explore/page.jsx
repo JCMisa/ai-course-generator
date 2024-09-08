@@ -19,8 +19,8 @@ const ExplorePage = () => {
         try {
             const result = await db.select()
                 .from(CourseList)
-                .limit(9)
-                .offset(pageIndex * 9)
+                .limit(6)
+                .offset(pageIndex * 6)
                 .orderBy(desc(CourseList?.id))
 
             if (result.length > 0) {
