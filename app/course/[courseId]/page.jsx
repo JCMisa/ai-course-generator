@@ -53,7 +53,7 @@ const Course = ({ params }) => {
         <div>
             <Header />
             <div className='py-5 px-10 md:px-20 lg:px-44'>
-                <ArrowLeftCircle onClick={() => router.replace('/dashboard')} className='cursor-pointer' />
+                <ArrowLeftCircle onClick={() => router.back()} className='cursor-pointer' />
                 <BasicInfo courseInfo={course} refreshData={() => getCourse()} edit={false} />
                 <CourseDetails courseInfo={course} />
                 <ChapterList courseInfo={course} refreshData={() => getCourse()} edit={false} />

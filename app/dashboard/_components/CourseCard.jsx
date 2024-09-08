@@ -11,7 +11,7 @@ import { Chapters, CourseList } from '@/utils/schema'
 import { eq } from 'drizzle-orm'
 import { useRouter } from 'next/navigation'
 
-const CourseCard = ({ course, refreshData }) => {
+const CourseCard = ({ course, refreshData, displayUser = false }) => {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
@@ -47,13 +47,21 @@ const CourseCard = ({ course, refreshData }) => {
             <div className='p-2 flex flex-col gap-2'>
                 <h2 className='font-medium text-lg flex justify-between items-center'>
                     {course?.courseOutput?.course?.name}
-                    <DropdownOption children={<EllipsisVertical />} deleteCourse={() => deleteCourse(course?.id)} />
+                    {!displayUser && <DropdownOption children={<EllipsisVertical />} deleteCourse={() => deleteCourse(course?.id)} />}
                 </h2>
                 <p className='text-sm text-gray-500'>{course?.category}</p>
                 <div className='flex items-center justify-between gap-5 mt-1'>
                     <h2 className='flex flex-row items-center gap-2 p-2 bg-dark-100 text-primary-100 text-sm rounded-lg'><BookOpen className='w-5 h-5' /> {course?.courseOutput?.chapters} Chapters</h2>
                     <h2 className='text-sm bg-dark-100 text-primary p-2 rounded-lg'>{course?.courseOutput?.level}</h2>
                 </div>
+                {
+                    displayUser && (
+                        <div className='flex items-center gap-3 mt-2'>
+                            <Image src={course?.userProfileImage} width={35} height={35} className='rounded-full' />
+                            <h2 className='text-sm'>{course?.username}</h2>
+                        </div>
+                    )
+                }
             </div>
             <LoadingDialog loading={loading} />
         </div>
