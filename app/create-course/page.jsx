@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '../../components/ui/button'
 import { LayoutGrid, Lightbulb, LoaderCircle, Settings } from 'lucide-react'
 import React, { useState, useContext, useEffect } from 'react'
 import SelectCategory from './_components/SelectCategory'

@@ -1,7 +1,7 @@
 'use client'
 
 import { UserCourseListContext } from '@/app/_context/UserCourseListContext';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../../components/ui/button';
 import { useUser } from '@clerk/nextjs'
 import { Rocket } from 'lucide-react';
 import { useRouter } from 'next/navigation';

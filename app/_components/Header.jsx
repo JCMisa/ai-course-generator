@@ -1,10 +1,10 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { UserButton, useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import { Button } from '../../components/ui/button'
 
 const Header = () => {
     const { user } = useUser();

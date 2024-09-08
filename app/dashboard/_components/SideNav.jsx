@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { LayoutGrid, Settings, Telescope, WalletCards } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../../components/ui/button";
 import { UserCourseListContext } from "@/app/_context/UserCourseListContext";
 import UsageTrack from "./UsageTrack";
 

@@ -7,7 +7,7 @@ import { desc } from 'drizzle-orm'
 import React, { useState, useEffect } from 'react'
 import { toast } from 'sonner'
 import CourseCard from '../_components/CourseCard'
-import { Button } from '@/components/ui/button'
+import { Button } from '../../../components/ui/button'
 
 const ExplorePage = () => {
     const [loading, setLoading] = useState(false);

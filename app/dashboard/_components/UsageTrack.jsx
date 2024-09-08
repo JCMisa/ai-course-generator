@@ -3,7 +3,7 @@
 
 import { TotalUsageContext } from "@/app/_context/TotalUsageContext";
 import { UserSubscriptionContext } from "@/app/_context/UserSubscriptionContext";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../../components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { db } from "@/utils/db";
 import { CourseList, UserSubscription } from "@/utils/schema";

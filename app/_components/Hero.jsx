@@ -13,13 +13,13 @@ const Hero = () => {
                     <h1
                         className="bg-gradient-to-r from-green-300 via-[#F96D00] to-[#3795BD] bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
                     >
-                        Write Smarter, Not Harder
+                        Pensieve: Where Learning
 
-                        <span className="sm:block"> with Pensieve </span>
+                        <span className="sm:block"> Meets Innovation </span>
                     </h1>
 
                     <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
-                        Unleash your creativity and let Pensieve turn your ideas into compelling content.
+                        Create personalized courses tailored to your unique learning style.
                     </p>
 
                     <div className="mt-8 flex flex-wrap justify-center gap-4">

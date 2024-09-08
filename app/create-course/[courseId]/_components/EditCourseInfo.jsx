@@ -14,7 +14,7 @@ import {
 import { LoaderCircle, SquarePen } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Button } from '@/components/ui/button'
+import { Button } from '../../../../components/ui/button'
 import { toast } from 'sonner'
 import { db } from '@/utils/db'
 import { CourseList } from '@/utils/schema'

@@ -1,7 +1,7 @@
 import React from 'react'
 import UploadImage from './UploadImage'
 import { LayoutDashboard } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '../../../../components/ui/button'
 import EditCourseInfo from './EditCourseInfo'
 import Link from 'next/link'
 

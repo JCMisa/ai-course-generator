@@ -10,7 +10,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { LoaderCircle, SquarePen } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '../../../../components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
