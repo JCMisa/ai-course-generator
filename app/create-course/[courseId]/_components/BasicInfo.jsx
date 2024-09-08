@@ -1,9 +1,9 @@
 import React from 'react'
 import UploadImage from './UploadImage'
-import Image from 'next/image'
 import { LayoutDashboard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import EditCourseInfo from './EditCourseInfo'
+import Link from 'next/link'
 
 const BasicInfo = ({ courseInfo, refreshData, edit = true }) => {
     return (
@@ -17,7 +17,7 @@ const BasicInfo = ({ courseInfo, refreshData, edit = true }) => {
                     </h2>
                     <p className='text-sm text-gray-500 mt-3'>{courseInfo?.courseOutput?.course?.description}</p>
                     <h2 className='font-medium mt-2 flex gap-2 items-center text-primary'><LayoutDashboard /> {courseInfo?.category}</h2>
-                    <Button className='w-full mt-5'>Start</Button>
+                    {!edit && <Link href={`/course/${courseInfo?.courseId}/start`} ><Button className='w-full mt-5'>Start</Button></Link>}
                 </div>
                 <div className='flex items-center justify-center min-w-[200px] max-w-[400px] rounded-xl min-h-[200px] max-h-[200px]'>
                     <UploadImage courseInfo={courseInfo} edit={edit} />
